@@ -16,7 +16,7 @@ const userSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-// Hasging password before new user
+// Hashing password before new user
 userSchema.pre("save", async function (next) {
   if (!this.isModified("password")) {
     return next();
