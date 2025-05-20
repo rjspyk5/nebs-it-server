@@ -7,7 +7,7 @@ const userControllar = {
     const credentials = req.body;
     try {
       const result = await User.findOne({ email: credentials?.email });
-      const isPasswordMatched = await result.isPasswordMatched(
+      const isPasswordMatched = await result?.isPasswordMatched(
         credentials?.password
       );
       if (!isPasswordMatched)
