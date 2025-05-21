@@ -18,7 +18,8 @@ const blogsControllar = {
     const id = req.params.id;
 
     try {
-      const result = await database.find(Blogs, { _id: id });
+      const result = await Blogs.findOne({ _id: id });
+
       res.status(200).send({
         success: true,
         data: result,
@@ -48,13 +49,11 @@ const blogsControllar = {
     try {
       const result = await database.update(Blogs, { _id: id }, data);
 
-      res
-        .status(200)
-        .send({
-          success: true,
-          message: "Blog Update Successfully",
-          data: result.modifiedCount,
-        });
+      res.status(200).send({
+        success: true,
+        message: "Blog Update Successfully",
+        data: result.modifiedCount,
+      });
     } catch (error) {
       next(error);
     }
@@ -65,13 +64,11 @@ const blogsControllar = {
     try {
       const result = await Blogs.deleteOne({ _id: id });
 
-      res
-        .status(200)
-        .send({
-          success: true,
-          message: "Delete Successfully",
-          data: result.deletedCount,
-        });
+      res.status(200).send({
+        success: true,
+        message: "Delete Successfully",
+        data: result.deletedCount,
+      });
     } catch (error) {
       next(error);
     }

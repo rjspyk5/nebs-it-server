@@ -2,8 +2,19 @@ const Projects = require("../model/projectsModel");
 
 const projectControllar = {
   allProjects: async (req, res, next) => {
+    const category = req?.query?.category;
+
+    let condition;
+    category
+      ? (condition = { category: req?.query?.category })
+      : (condition = {});
+
     try {
-      const result = await Projects.find();
+      const result = await Projects.find(condition, {
+        thumbnail: 1,
+        category: 1,
+        title:1
+      });
       res.status(200).send({
         data: result,
         success: true,
@@ -14,7 +25,6 @@ const projectControllar = {
     }
   },
   singleProject: async (req, res, next) => {
-    
     const id = req.params.id;
     try {
       const result = await Projects.findOne({ _id: id });
@@ -43,8 +53,7 @@ const projectControllar = {
   },
   editProjects: async (req, res, next) => {
     const data = req.body;
-    const id =req.params.id;
- 
+    const id = req.params.id;
 
     try {
       const result = await Projects.updateOne({ _id: id }, data, {
