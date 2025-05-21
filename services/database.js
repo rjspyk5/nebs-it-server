@@ -1,5 +1,5 @@
 const database = {
-  findWithPaigination: async (model, page, limit, condition) => {
+  findWithPaigination: async (model,condition,page=1,limit=10) => {
     const skip = (page - 1) * limit;
     const result = await model
       .find(condition || null)

@@ -1,63 +1,77 @@
-const Projects=require("../model/projectsModel");
+const Projects = require("../model/projectsModel");
 
 const projectControllar = {
   allProjects: async (req, res, next) => {
     try {
-        const result=await Projects.find();
-        res.status(200).send({data:result,success:true,message:"Projects data retrive successfully"})
+      const result = await Projects.find();
+      res.status(200).send({
+        data: result,
+        success: true,
+        message: "Projects data retrive successfully",
+      });
     } catch (error) {
-        next(error)
+      next(error);
     }
-
   },
   singleProject: async (req, res, next) => {
-    const id =req.params.id
+    
+    const id = req.params.id;
     try {
-        const result=await Projects.findOne({_id:id})
-        res.status(200).send({success:true,data:result,message:"Single Project data retrive successfully"})
-        
+      const result = await Projects.findOne({ _id: id });
+      res.status(200).send({
+        success: true,
+        data: result,
+        message: "Single Project data retrive successfully",
+      });
     } catch (error) {
-        next(error)
+      next(error);
     }
   },
   createProjects: async (req, res, next) => {
-    const data=req.body;
+    const data = req.body;
 
     try {
-        const result=await Projects.create(data);
-        res.status(200).send({success:true,message:"Projects created successfuly",data:result._id})
-        
+      const result = await Projects.create(data);
+      res.status(200).send({
+        success: true,
+        message: "Projects created successfuly",
+        data: result._id,
+      });
     } catch (error) {
-       next(error) 
+      next(error);
     }
   },
   editProjects: async (req, res, next) => {
-    const data=req.body;
-    const id =req.params.id
+    const data = req.body;
+    const id =req.params.id;
+ 
 
     try {
+      const result = await Projects.updateOne({ _id: id }, data, {
+        runValidators: true,
+      });
 
-
-         res
-        .status(200)
-        .send({
-          success: true,
-          message: "Blog Update Successfully",
-          data: result.modifiedCount,
-        }); 
+      res.status(200).send({
+        success: true,
+        message: "Blog Update Successfully",
+        data: result.modifiedCount,
+      });
     } catch (error) {
-        next(error)
+      next(error);
     }
   },
   deleteProjects: async (req, res, next) => {
-        const id =req.params.id;
-        try {
-            const result=await Projects.deleteOne({_id:id});
-            res.status(200).send({success:true,message:"Project delete successfully",data:result?.deletedCount})
-            
-        } catch (error) {
-            next(error)
-        }
+    const id = req.params.id;
+    try {
+      const result = await Projects.deleteOne({ _id: id });
+      res.status(200).send({
+        success: true,
+        message: "Project delete successfully",
+        data: result?.deletedCount,
+      });
+    } catch (error) {
+      next(error);
+    }
   },
 };
 
