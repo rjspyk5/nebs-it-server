@@ -1,5 +1,5 @@
-const express=require("express");
-const mongoose=require("mongoose");
+const express = require("express");
+const mongoose = require("mongoose");
 const jobSchema = new mongoose.Schema(
   {
     title: {
@@ -69,5 +69,5 @@ const jobSchema = new mongoose.Schema(
   }
 );
 
-const Jobs=mongoose.model("jobs",jobsSchema);
-module.exports=Jobs;
+const Jobs = mongoose.model("jobs", jobSchema);
+module.exports = Jobs;
