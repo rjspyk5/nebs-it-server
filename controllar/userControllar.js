@@ -8,7 +8,7 @@ const userControllar = {
 
     try {
       const result = await User.findOne({ email: credentials?.email });
- 
+
       const isPasswordMatched = await result?.isPasswordMatched(
         credentials?.password
       );
@@ -16,7 +16,7 @@ const userControllar = {
         return res
           .status(400)
           .send({ message: "Password didn't match", success: false });
-      const token = genarateToken({ email: credentials?.email });
+      const token = genarateToken({ email: credentials?.email,role:result.role });
       res
         .status(200)
         .send({ success: true, message: "Successfully Login", token });
