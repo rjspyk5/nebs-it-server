@@ -5,9 +5,10 @@ const genarateToken = require("../utils/genarateToken");
 const userControllar = {
   login: async (req, res, next) => {
     const credentials = req.body;
+
     try {
       const result = await User.findOne({ email: credentials?.email });
-      console.log(result)
+ 
       const isPasswordMatched = await result?.isPasswordMatched(
         credentials?.password
       );
@@ -111,6 +112,7 @@ const userControllar = {
       next(error);
     }
   },
+
 };
 
 module.exports = userControllar;
