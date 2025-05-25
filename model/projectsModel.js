@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 const reviewSchema = new mongoose.Schema({
   image: {
-    type: String, // image file path or URL
+    type: String, 
     required: false,
   },
   quote: {
