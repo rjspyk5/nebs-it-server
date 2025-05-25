@@ -9,13 +9,10 @@ const dashboardControllar = {
       const totalBlogs = await Blogs.countDocuments();
       const totalProjects = await Projects.countDocuments();
       const totalJobs = await Jobs.countDocuments();
-            const activities = await Activity.find()
-        .sort({ actionTime: -1 })
-        .limit(5);
-
+      const activites = await Activity.find().sort({ actionTime: -1 }).limit(5);
       res.status(200).send({
         success: true,
-        data: { totalBlogs, totalProjects, totalJobs,activites:activities },
+        data: { totalBlogs, totalProjects, totalJobs, activites },
         message: "Data retrive successfully",
       });
     } catch (error) {
@@ -26,7 +23,7 @@ const dashboardControllar = {
     try {
       const activities = await Activity.find()
         .sort({ actionTime: -1 })
-        .limit(50);
+        .limit(5);
       return res.status(200).send({ success: true, data: activities });
     } catch (error) {
       next(error);
