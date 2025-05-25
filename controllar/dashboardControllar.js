@@ -19,16 +19,16 @@ const dashboardControllar = {
       next(error);
     }
   },
-  activity: async (req, res, next) => {
-    try {
-      const activities = await Activity.find()
-        .sort({ actionTime: -1 })
-        .limit(5);
-      return res.status(200).send({ success: true, data: activities });
-    } catch (error) {
-      next(error);
-    }
-  },
+  // activity: async (req, res, next) => {
+  //   try {
+  //     const activities = await Activity.find()
+  //       .sort({ actionTime: -1 })
+  //       .limit(5);
+  //     return res.status(200).send({ success: true, data: activities });
+  //   } catch (error) {
+  //     next(error);
+  //   }
+  // },
 };
 
 module.exports = dashboardControllar;

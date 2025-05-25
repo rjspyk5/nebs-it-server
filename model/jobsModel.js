@@ -43,6 +43,10 @@ const jobSchema = new mongoose.Schema(
       type: String,
       default: "",
     },
+    image: {
+      type: String,
+      default: "https://picsum.photos/300/250",
+    },
     postedAt: {
       type: Date,
       default: Date.now,

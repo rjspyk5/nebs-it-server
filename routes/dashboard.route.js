@@ -5,7 +5,7 @@ const dashboardControllar = require("../controllar/dashboardControllar");
 const dashboardRouter=express.Router()
 
 dashboardRouter.get("/",dashboardControllar.homeData)
-dashboardRouter.get("/activites",dashboardControllar.activity)
+// dashboardRouter.get("/activites",dashboardControllar.activity)
 
 
 module.exports=dashboardRouter
