@@ -9,12 +9,15 @@ const rateLimit = require("express-rate-limit");
 const morgan = require("morgan");
 const userRouter = require("./routes/user.routes");
 const { routes } = require("./routes");
+const ActivityControllar = require("./controllar/ActivityControllar");
 const app = express();
 const port = process.env.PORT ?? 5000;
 require("dotenv").config();
 
 // connect Database
-connectDb();
+connectDb().then(()=>{
+    ActivityControllar();
+});
 
 // cors setup
 app.use(
