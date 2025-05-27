@@ -34,7 +34,7 @@ const projectSchema = new mongoose.Schema(
       type: String,
       required: true,
       minlength: 500,
-      maxlength: 800,
+      maxlength:700,
     },
     duration: {
       type: String,
@@ -60,8 +60,8 @@ const projectSchema = new mongoose.Schema(
     features: {
       type: [String], // array of features
       validate: [
-        (val) => val.length >= 5 && val.length <= 9,
-        "Features must be between 5 and 9",
+        (val) => val.length >= 3 && val.length <= 5,
+        "Features must be between 3 and 5",
       ],
       required: true,
     },
