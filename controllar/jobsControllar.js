@@ -91,9 +91,13 @@ const jobsControllar = {
         message,
         cvFile,
       });
-      console.log(result);
+      return res.status(200).send({
+        message: "Job application sent successfully",
+        success: true,
+        data: result,
+      });
     } catch (error) {
-      console.log(error);
+      return res.status(500).json({ message: "Failed to send email" });
     }
   },
 };
