@@ -2,6 +2,7 @@ const { verifyAdmin } = require("../middleware/verifyAdminstration");
 const verifyToken = require("../middleware/verifyToken");
 const Jobs = require("../model/jobsModel");
 const database = require("../services/database");
+const { sendemail } = require("../services/sendEmail");
 
 const jobsControllar = {
   allJobs: async (req, res, next) => {
@@ -70,6 +71,29 @@ const jobsControllar = {
       });
     } catch (error) {
       next(error);
+    }
+  },
+  jobApply: async (req, res, next) => {
+    const { name, email, mobile, location, position, message } = req.body;
+    const cvFile = req.file;
+
+    if (!cvFile) {
+      return res.status(400).json({ message: "CV is required" });
+    }
+
+    try {
+      const result = await sendemail("rjspyk5@gmail.com", "test", {
+        name,
+        email,
+        mobile,
+        location,
+        position,
+        message,
+        cvFile,
+      });
+      console.log(result);
+    } catch (error) {
+      console.log(error);
     }
   },
 };
