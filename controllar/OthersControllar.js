@@ -1,4 +1,6 @@
+const Blogs = require("../model/blogsModel");
 const Contact = require("../model/ContactModel");
+const Projects = require("../model/projectsModel");
 const database = require("../services/database");
 const nodemailer = require("nodemailer");
 
@@ -42,6 +44,20 @@ const othersControllar = {
         success: true,
         message: "Contact saved and email sent successfully",
         Id: result?._id,
+      });
+    } catch (error) {
+      next(error);
+    }
+  },
+  home: async (req, res, next) => {
+    try {
+      const totalProjects = await Projects.countDocuments();
+      const latestProjects = await Projects.find().limit(4);
+      const latestBlogs = await Blogs.find().limit(4);
+      res.status(200).send({
+        success: true,
+        data: { totalProjects, latestProjects, latestBlogs },
+        message: "Data retrieved successfully",
       });
     } catch (error) {
       next(error);

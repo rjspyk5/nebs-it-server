@@ -82,7 +82,7 @@ const jobsControllar = {
     }
 
     try {
-      const result = await sendemail("rjspyk5@gmail.com", "test", {
+      const result = await sendemail(process.env.CARRIER_MAIL, `Job Application :${position} - ${name} `, {
         name,
         email,
         mobile,

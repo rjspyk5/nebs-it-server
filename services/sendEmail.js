@@ -17,9 +17,9 @@ const sendemail = async (
 ) => {
   try {
     transporter.sendMail({
-      from: '"Job Apply" <rjspyk5@gmail.com>',
+      from: '"Job Application" <nebsdev1@gmail.com>',
       to: to,
-      subject: `Job Application: ${subjectTopic}`,
+      subject: `${subjectTopic}`,
       text: `
         Name: ${name}
         Email: ${email}
