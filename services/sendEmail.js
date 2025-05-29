@@ -10,25 +10,14 @@ const transporter = nodemailer.createTransport({
   },
 });
 
-const sendemail = async (
-  to,
-  subjectTopic,
-  { name, email, mobile, location, position, message, cvFile }
-) => {
+const sendemail = async (to, subjectTopic, text, cvFile=null) => {
   try {
     transporter.sendMail({
-      from: '"Job Application" <nebsdev1@gmail.com>',
+      from: '"Nebs It UK" <nebsdev1@gmail.com>',
       to: to,
       subject: `${subjectTopic}`,
-      text: `
-        Name: ${name}
-        Email: ${email}
-        Mobile: ${mobile}
-        Location: ${location}
-        Position: ${position}
-        Message: ${message || "N/A"}
-      `,
-      attachments: [
+      text: text,
+      attachments:cvFile && [
         {
           filename: cvFile.originalname,
           content: cvFile.buffer,

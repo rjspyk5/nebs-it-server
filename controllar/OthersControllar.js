@@ -3,47 +3,32 @@ const Contact = require("../model/ContactModel");
 const Projects = require("../model/projectsModel");
 const database = require("../services/database");
 const nodemailer = require("nodemailer");
+const { sendemail } = require("../services/sendEmail");
 
 const othersControllar = {
   contact: async (req, res, next) => {
     const data = req.body;
 
+    const { name, email, mobile, message, budget } = data;
     try {
-      // 1. Save to Database
-      const result = await database.create(Contact, data);
+      const text = `
+        Name: ${name}
+        Email: ${email}
+        Mobile: ${mobile}
+        Message: ${message || "N/A"}
+        Budget: ${budget || "N/A"}
+      `;
 
-      // 2. Setup Nodemailer Transport
-      const transporter = nodemailer.createTransport({
-        service: "gmail", // or use SMTP configuration
-        auth: {
-          user: process.env.NODEMAILER_USER, // use environment variables
-          pass: process.env.NODEMAILER_PASS,
-        },
-      });
+      const result = await sendemail(
+        process.env.CONTACT_MAIL,
+        `Contact Message from :${mobile} `,
+        text
+      );
 
-      // 3. Email Options
-      const mailOptions = {
-        from: `"Portfolio Contact" <${process.env.NODEMAILER_USER}>`,
-        to: "rjspyk5@gmail.com", // you can also send to yourself or admin
-        subject: "New Contact Submission",
-        html: `
-          <h3>New Contact Message</h3>
-          <p><strong>Name:</strong> ${data.fullName || "Not Provided"}</p>
-          <p><strong>Email:</strong> ${data.email || "Not Provided"}</p>
-          <p><strong>Mobile:</strong> ${data.mobile}</p>
-          <p><strong>Budget:</strong> ${data.budget || "Not Provided"}</p>
-          <p><strong>Message:</strong> ${data.message || "No message"}</p>
-        `,
-      };
-
-      // 4. Send Email
-      await transporter.sendMail(mailOptions);
-
-      // 5. Respond
-      res.status(200).send({
+      return res.status(200).send({
+        message: "Message sent successfully",
         success: true,
-        message: "Contact saved and email sent successfully",
-        Id: result?._id,
+        data: result,
       });
     } catch (error) {
       next(error);

@@ -80,17 +80,17 @@ const jobsControllar = {
     if (!cvFile) {
       return res.status(400).json({ message: "CV is required" });
     }
+    const text= `
+        Name: ${name}
+        Email: ${email}
+        Mobile: ${mobile}
+        Location: ${location}
+        Position: ${position}
+        Message: ${message || "N/A"}
+      `
 
     try {
-      const result = await sendemail(process.env.CARRIER_MAIL, `Job Application :${position} - ${name} `, {
-        name,
-        email,
-        mobile,
-        location,
-        position,
-        message,
-        cvFile,
-      });
+      const result = await sendemail(process.env.CARRIER_MAIL, `Job Application :${position} - ${name} `, text,cvFile);
       return res.status(200).send({
         message: "Job application sent successfully",
         success: true,
