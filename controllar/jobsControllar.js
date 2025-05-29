@@ -29,7 +29,7 @@ const jobsControllar = {
         data: result,
       });
     } catch (error) {
-      console.log(error, "error");
+   
       next(error);
     }
   },

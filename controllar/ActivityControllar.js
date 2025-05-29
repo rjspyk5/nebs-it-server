@@ -31,7 +31,7 @@ function watchModel(model, collectionName, titleField = "title") {
       });
 
       await activity.save();
-      console.log(`[${collectionName}] ${operationType} - ${activity.title}`);
+     
     } catch (err) {
       console.error("Activity log error:", err.message);
     }

@@ -21,7 +21,7 @@ const userControllar = {
         .status(200)
         .send({ success: true, message: "Successfully Login", token });
     } catch (error) {
-      console.log(error);
+     
       next(error);
     }
   },
