@@ -1,3 +1,4 @@
+require("dotenv").config();
 const express = require("express");
 const connectDb = require("./config/config");
 const cors = require("cors");
@@ -12,7 +13,7 @@ const { routes } = require("./routes");
 const ActivityControllar = require("./controllar/ActivityControllar");
 const app = express();
 const port = process.env.PORT ?? 5000;
-require("dotenv").config();
+
 
 // connect Database
 connectDb().then(()=>{
