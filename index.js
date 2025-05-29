@@ -23,7 +23,7 @@ connectDb().then(()=>{
 // cors setup
 app.use(
   cors({
-    origin: ["http://localhost:3000", process.env.FRONTEND_URL],
+    origin: ["http://localhost:3000", process.env.FRONTEND_URL,"https://nebs-it-uk-client.vercel.app","https://nebs-it-uk-client-gicg4vqpo-nebs-its-projects.vercel.app","https://nebs-it-uk-client-git-main-nebs-its-projects.vercel.app"],
     credentials: true,
     optionSuccessStatus: 200,
   })
