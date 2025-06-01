@@ -51,7 +51,7 @@ const othersControllar = {
   },
   getMenu: async (req, res, next) => {
     try {
-      const menus = await Services.find({}, { name: 1,slug:1, _id: 0 });
+      const menus = await Services.find({}, { name: 1,href:1, _id: 0 });
       res.status(200).send({
         success: true,
         data: menus,

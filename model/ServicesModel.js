@@ -28,7 +28,7 @@ const ServicesPageSchema = new mongoose.Schema(
       required: true,
       unique: true,
     },
-    slug: {
+    href: {
       type: String,
       required: true,
       unique: true,
