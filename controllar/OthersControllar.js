@@ -4,6 +4,7 @@ const Projects = require("../model/projectsModel");
 const database = require("../services/database");
 const nodemailer = require("nodemailer");
 const { sendemail } = require("../services/sendEmail");
+const Services = require("../model/ServicesModel");
 
 const othersControllar = {
   contact: async (req, res, next) => {
@@ -43,6 +44,18 @@ const othersControllar = {
         success: true,
         data: { totalProjects, latestProjects, latestBlogs },
         message: "Data retrieved successfully",
+      });
+    } catch (error) {
+      next(error);
+    }
+  },
+  getMenu: async (req, res, next) => {
+    try {
+      const menus = await Services.find({}, { name: 1,slug:1, _id: 0 });
+      res.status(200).send({
+        success: true,
+        data: menus,
+        message: "Navigation menu retrieved successfully",
       });
     } catch (error) {
       next(error);
