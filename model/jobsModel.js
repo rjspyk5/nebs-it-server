@@ -18,7 +18,6 @@ const jobSchema = new mongoose.Schema(
     },
     jobType: {
       type: String,
-  
       required: true,
     },
     dutyTime: {
@@ -32,7 +31,7 @@ const jobSchema = new mongoose.Schema(
     },
     employmentType: {
       type: String,
-   
+
       required: true,
     },
     experience: {
@@ -40,8 +39,7 @@ const jobSchema = new mongoose.Schema(
       required: true,
     },
     salary: {
-      type: String,
-      default: "",
+      type: Number,
     },
     image: {
       type: String,

@@ -45,17 +45,17 @@ const projectSchema = new mongoose.Schema(
       required: true,
     },
     thumbnail: {
-      type: String, // will store file path or cloud URL
+      type: String, 
       required: true,
     },
     heroVideo: {
-      type: String, // optional video path or URL
+      type: String, 
     },
     overviewImage: {
-      type: String, // optional image path or URL
+      type: String,
     },
     featureImage: {
-      type: String, // optional image path or URL
+      type: String, 
     },
     features: {
       type: [String], // array of features
@@ -66,7 +66,7 @@ const projectSchema = new mongoose.Schema(
       required: true,
     },
     gallery: {
-      type: [String], // paths or URLs of 5 images
+      type: [String], 
       validate: [
         (val) => val.length === 5,
         "Exactly 5 gallery images are required.",
