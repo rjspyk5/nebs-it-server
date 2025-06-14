@@ -19,6 +19,9 @@ const jobSchema = new mongoose.Schema(
     jobType: {
       type: String,
       required: true,
+    },deadLine: {
+      type: Date,
+      
     },
     dutyTime: {
       type: String,

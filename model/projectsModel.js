@@ -15,7 +15,7 @@ const reviewSchema = new mongoose.Schema({
   },
   address: {
     type: String,
-    required: true,
+
   },
 });
 const projectSchema = new mongoose.Schema(
