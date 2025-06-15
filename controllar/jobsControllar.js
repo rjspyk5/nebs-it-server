@@ -29,7 +29,6 @@ const jobsControllar = {
         data: result,
       });
     } catch (error) {
-   
       next(error);
     }
   },
@@ -80,17 +79,22 @@ const jobsControllar = {
     if (!cvFile) {
       return res.status(400).json({ message: "CV is required" });
     }
-    const text= `
+    const text = `
         Name: ${name}
         Email: ${email}
         Mobile: ${mobile}
         Location: ${location}
         Position: ${position}
         Message: ${message || "N/A"}
-      `
+      `;
 
     try {
-      const result = await sendemail(process.env.CARRIER_MAIL, `Job Application :${position} - ${name} `, text,cvFile);
+      const result = await sendemail(
+        process.env.CARRIER_MAIL,
+        `Job Application :${position} - ${name} `,
+        text,
+        cvFile
+      );
       return res.status(200).send({
         message: "Job application sent successfully",
         success: true,
@@ -98,6 +102,25 @@ const jobsControllar = {
       });
     } catch (error) {
       return res.status(500).json({ message: "Failed to send email" });
+    }
+  },
+  openJobs: async (req, res, next) => {
+    try {
+      const today = new Date();
+      today.setHours(0, 0, 0, 0);
+
+      const result = await database.find(Jobs, {
+        status: "Open",
+        deadline: { $gte: today },
+      });
+
+      res.status(200).send({
+        success: true,
+        message: "Open Jobs Data Retrieved Successfully",
+        data: result,
+      });
+    } catch (error) {
+      next(error);
     }
   },
 };

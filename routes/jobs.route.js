@@ -6,6 +6,7 @@ const upload = require("../services/multerConfig");
 jobsRouter = express.Router();
 
 jobsRouter.get("/", jobsControllar.allJobs);
+jobsRouter.get("/open", jobsControllar.allJobs);
 jobsRouter.get("/:id", jobsControllar.singleJob);
 jobsRouter.post("/apply",upload.single("cv"), jobsControllar.jobApply);
 jobsRouter.delete("/:id",verifyToken,verifyAdminstation.verifyAdmin,jobsControllar.deleteJob);
