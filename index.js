@@ -14,16 +14,21 @@ const ActivityControllar = require("./controllar/ActivityControllar");
 const app = express();
 const port = process.env.PORT ?? 5000;
 
-
 // connect Database
-connectDb().then(()=>{
-    ActivityControllar();
+connectDb().then(() => {
+  ActivityControllar();
 });
 
 // cors setup
 app.use(
   cors({
-    origin: ["http://localhost:3000", process.env.FRONTEND_URL,"https://nebs-it-uk-client.vercel.app","https://nebs-it-uk-client-gicg4vqpo-nebs-its-projects.vercel.app","https://nebs-it-uk-client-git-main-nebs-its-projects.vercel.app"],
+    origin: [
+      "http://localhost:3000",
+      process.env.FRONTEND_URL,
+      "https://nebs-it-uk-client.vercel.app","https://nebs-it.vercel.app","https://nebs-it-md-rakibul-islams-projects-c9411e14.vercel.app",
+      "https://nebs-it-uk-client-gicg4vqpo-nebs-its-projects.vercel.app",
+      "https://nebs-it-uk-client-git-main-nebs-its-projects.vercel.app",
+    ],
     credentials: true,
     optionSuccessStatus: 200,
   })
