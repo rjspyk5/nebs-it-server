@@ -9,7 +9,6 @@ const Services = require("../model/ServicesModel");
 const othersControllar = {
   contact: async (req, res, next) => {
     const data = req.body;
-
     const { name, email, mobile, message, budget } = data;
     try {
       const text = `
@@ -17,7 +16,7 @@ const othersControllar = {
         Email: ${email}
         Mobile: ${mobile}
         Message: ${message || "N/A"}
-        Budget: ${budget || "N/A"}
+       ${budget && "Budget :" + budget} 
       `;
 
       const result = await sendemail(
@@ -51,7 +50,7 @@ const othersControllar = {
   },
   getMenu: async (req, res, next) => {
     try {
-      const menus = await Services.find({}, { name: 1,href:1, _id: 0 });
+      const menus = await Services.find({}, { name: 1, href: 1, _id: 0 });
       res.status(200).send({
         success: true,
         data: menus,
