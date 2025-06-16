@@ -16,6 +16,16 @@ const jobSchema = new mongoose.Schema(
       enum: ["Open", "Closed"],
       default: "Open",
     },
+      metaTitle:{
+      type: String,
+
+      trim: true,
+    },
+    metaDescription:{
+      type: String,
+
+      trim: true,
+    },
     jobType: {
       type: String,
       required: true,
