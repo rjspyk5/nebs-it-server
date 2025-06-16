@@ -31,6 +31,7 @@ const blogsControllar = {
   },
   createBlog: async (req, res, next) => {
     const data = req.body;
+
     try {
       const result = await database.create(Blogs, data);
       res.status(200).send({

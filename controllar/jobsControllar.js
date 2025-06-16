@@ -34,6 +34,7 @@ const jobsControllar = {
   },
   createJob: async (req, res, next) => {
     const data = req.body;
+
     try {
       const result = await Jobs.create(data);
       res.status(200).send({
