@@ -1,6 +1,8 @@
+const Projects = require("../model/projectsModel");
 const Services = require("../model/ServicesModel");
 const { create } = require("../model/userModel");
 const { update } = require("../services/database");
+const { slugToName } = require("../services/slugFormater");
 
 const ServicesControllar = {
   getServicesPage: async (req, res) => {
@@ -11,11 +13,31 @@ const ServicesControllar = {
     }
     try {
       const service = await Services.findOne({ href: href });
+
       if (!service) {
         return res
           .status(404)
           .json({ message: "Service not found", data: service, success: true });
       }
+      const slug =
+        service?.href === "ui-ux" ? "UI/UX Desgin" : slugToName(service?.href);
+
+      const latestProjects = await Projects.find(
+        {
+          category: slug,
+        },
+        {
+          name: 1,
+          thumbnail: 1,
+          category: 1,
+          title: 1,
+        }
+      )
+        .sort({ createdAt: -1 })
+        .limit(3);
+
+      service.latestProjects = latestProjects;
+
       res.status(200).send({
         message: "Service fetched successfully",
         data: service,

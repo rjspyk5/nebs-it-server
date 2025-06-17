@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 const reviewSchema = new mongoose.Schema({
   image: {
-    type: String, 
+    type: String,
     required: false,
   },
   quote: {
@@ -15,7 +15,6 @@ const reviewSchema = new mongoose.Schema({
   },
   address: {
     type: String,
-
   },
 });
 const projectSchema = new mongoose.Schema(
@@ -25,12 +24,13 @@ const projectSchema = new mongoose.Schema(
       required: true,
       trim: true,
     },
-    metaTitle:{
+    metaTitle: {
       type: String,
 
       trim: true,
     },
-    metaDescription:{
+
+    metaDescription: {
       type: String,
 
       trim: true,
@@ -44,7 +44,7 @@ const projectSchema = new mongoose.Schema(
       type: String,
       required: true,
       minlength: 500,
-      maxlength:700,
+      maxlength: 700,
     },
     duration: {
       type: String,
@@ -55,17 +55,17 @@ const projectSchema = new mongoose.Schema(
       required: true,
     },
     thumbnail: {
-      type: String, 
+      type: String,
       required: true,
     },
     heroVideo: {
-      type: String, 
+      type: String,
     },
     overviewImage: {
       type: String,
     },
     featureImage: {
-      type: String, 
+      type: String,
     },
     features: {
       type: [String], // array of features
@@ -76,7 +76,7 @@ const projectSchema = new mongoose.Schema(
       required: true,
     },
     gallery: {
-      type: [String], 
+      type: [String],
       validate: [
         (val) => val.length === 5,
         "Exactly 5 gallery images are required.",

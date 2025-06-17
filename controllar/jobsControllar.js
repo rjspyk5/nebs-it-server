@@ -19,9 +19,10 @@ const jobsControllar = {
   },
   singleJob: async (req, res, next) => {
     const id = req.params.id;
+    const meta = req.query.meta;
 
     try {
-      const result = await Jobs.findOne({ _id: id });
+      const result = await Jobs.findOne({ _id: id },meta ? { metaTitle: 1, metaDescription: 1 } : {});
 
       res.status(200).send({
         success: true,

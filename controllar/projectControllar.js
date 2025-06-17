@@ -13,7 +13,7 @@ const projectControllar = {
       const result = await Projects.find(condition, {
         thumbnail: 1,
         category: 1,
-        title:1
+        title: 1,
       });
       res.status(200).send({
         data: result,
@@ -26,8 +26,12 @@ const projectControllar = {
   },
   singleProject: async (req, res, next) => {
     const id = req.params.id;
+    const meta = req.query.meta;
     try {
-      const result = await Projects.findOne({ _id: id });
+      const result = await Projects.findOne(
+        { _id: id },
+        meta ? { metaTitle: 1, metaDescription: 1 } : {}
+      );
       res.status(200).send({
         success: true,
         data: result,
