@@ -6,7 +6,7 @@ servicesRouter = express.Router();
 servicesRouter.get("/:href", ServicesControllar.getServicesPage);
 servicesRouter.get("/", ServicesControllar.getServicesPage);
 servicesRouter.post("/", ServicesControllar.createService);
-servicesRouter.put("/:id", ServicesControllar.createService);
-servicesRouter.post("/:id", ServicesControllar.createService);
+servicesRouter.put("/:id", ServicesControllar.updateService);
+servicesRouter.post("/:id", ServicesControllar.deleteService);
 
 module.exports = servicesRouter;

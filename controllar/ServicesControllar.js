@@ -36,11 +36,11 @@ const ServicesControllar = {
         .sort({ createdAt: -1 })
         .limit(3);
 
-      service.latestProjects = latestProjects;
+      const data = { ...service?._doc, latestProjects };
 
       res.status(200).send({
         message: "Service fetched successfully",
-        data: service,
+        data: data,
         success: true,
       });
     } catch (error) {
