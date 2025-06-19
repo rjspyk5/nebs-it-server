@@ -85,7 +85,7 @@ const jobsControllar = {
         Name: ${name}
         Email: ${email}
         Mobile: ${mobile}
-        Location: ${location}
+        Location: ${location || "N/A"}
         Position: ${position}
         Message: ${message || "N/A"}
       `;

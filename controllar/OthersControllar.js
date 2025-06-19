@@ -12,8 +12,8 @@ const othersControllar = {
     const { name, email, mobile, message, budget } = data;
     try {
       const text = `
-        Name: ${name}
-        Email: ${email}
+        Name: ${name || "N/A"} 
+        Email: ${email || "N/A"}
         Mobile: ${mobile}
         Message: ${message || "N/A"}
        ${budget && "Budget :" + budget} 

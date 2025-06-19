@@ -15,6 +15,7 @@ const projectControllar = {
         category: 1,
         title: 1,
       });
+      
       res.status(200).send({
         data: result,
         success: true,
