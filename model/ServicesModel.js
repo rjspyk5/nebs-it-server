@@ -39,6 +39,8 @@ const ServicesPageSchema = new mongoose.Schema(
       description: String,
       href: String,
     },
+    metaTitle: String,
+    metaDescription: String,
     whatWeOffer: {
       sectionHeading: String,
       subHeading: String,
