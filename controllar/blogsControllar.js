@@ -4,7 +4,7 @@ const database = require("../services/database");
 const blogsControllar = {
   allBlogs: async (req, res, next) => {
     try {
-      const result = await Blogs.find();
+      const result = await Blogs.find().sort({ createdAt: -1 });
       return res.send({
         message: "Blogs data retrive Successfully",
         success: true,

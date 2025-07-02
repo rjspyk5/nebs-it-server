@@ -7,7 +7,7 @@ const { sendemail } = require("../services/sendEmail");
 const jobsControllar = {
   allJobs: async (req, res, next) => {
     try {
-      const result = await database.find(Jobs);
+      const result = await Jobs.find().sort({ createdAt: -1 });
       res.status(200).send({
         success: true,
         message: "Jobs Data Retrive Successfully",

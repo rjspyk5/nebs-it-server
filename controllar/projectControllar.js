@@ -14,8 +14,8 @@ const projectControllar = {
         thumbnail: 1,
         category: 1,
         title: 1,
-      });
-      
+      }).sort({ createdAt: -1 });
+
       res.status(200).send({
         data: result,
         success: true,
