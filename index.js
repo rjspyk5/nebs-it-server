@@ -27,7 +27,7 @@ app.use(
       process.env.FRONTEND_URL,
       "https://nebs-it-uk-client.vercel.app","https://nebs-it.vercel.app","https://nebs-it-md-rakibul-islams-projects-c9411e14.vercel.app",
       "https://nebs-it-uk-client-gicg4vqpo-nebs-its-projects.vercel.app",
-      "https://nebs-it-uk-client-git-main-nebs-its-projects.vercel.app",
+      "https://nebs-it-uk-client-git-main-nebs-its-projects.vercel.app","https://nebsit.vercel.app","https://nebs-it.com"
     ],
     credentials: true,
     optionSuccessStatus: 200,
