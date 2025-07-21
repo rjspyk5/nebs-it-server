@@ -6,8 +6,24 @@ const projectsRouter = express.Router();
 
 projectsRouter.get("/", projectControllar.allProjects);
 projectsRouter.get("/:id", projectControllar.singleProject);
-projectsRouter.post("/",verifyToken,verifyAdminstation.verifyAdmin, projectControllar.createProjects);
-projectsRouter.put("/:id",verifyToken,verifyAdminstation.verifyAdmin, projectControllar.editProjects);
-projectsRouter.delete("/:id",verifyToken,verifyAdminstation.verifyAdmin, projectControllar.deleteProjects);
+projectsRouter.get("/meta/:href", projectControllar.getProjectsMeta);
+projectsRouter.post(
+  "/",
+  verifyToken,
+  verifyAdminstation.verifyAdmin,
+  projectControllar.createProjects
+);
+projectsRouter.put(
+  "/:id",
+  verifyToken,
+  verifyAdminstation.verifyAdmin,
+  projectControllar.editProjects
+);
+projectsRouter.delete(
+  "/:id",
+  verifyToken,
+  verifyAdminstation.verifyAdmin,
+  projectControllar.deleteProjects
+);
 
 module.exports = projectsRouter;

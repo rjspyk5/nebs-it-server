@@ -87,6 +87,33 @@ const projectControllar = {
       next(error);
     }
   },
+  getProjectsMeta: async (req, res) => {
+    const href = req.params.href;
+    if (!href) {
+      return res.status(400).json({ message: "href parameter is required" });
+    }
+    try {
+      const service = await Projects.findOne(
+        { href: href },
+        { metaTitle: 1, metaDescription: 1 }
+      );
+
+      if (!service) {
+        return res
+          .status(404)
+          .json({ message: "Project not found", data: service, success: true });
+      }
+
+      res.status(200).send({
+        message: "metadata fetched successfully",
+        data: service,
+        success: true,
+      });
+    } catch (error) {
+      console.error("Error fetching service:", error);
+      res.status(500).json({ message: "Internal server error" });
+    }
+  },
 };
 
 module.exports = projectControllar;
