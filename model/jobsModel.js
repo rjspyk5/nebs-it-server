@@ -16,7 +16,7 @@ const jobSchema = new mongoose.Schema(
       enum: ["Open", "Closed"],
       default: "Open",
     },
-      metaTitle:{
+    metaTitle:{
       type: String,
 
       trim: true,
@@ -53,7 +53,7 @@ const jobSchema = new mongoose.Schema(
       required: true,
     },
     salary: {
-      type: Number,
+      type:String,
     },
     image: {
       type: String,
