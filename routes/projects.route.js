@@ -6,7 +6,7 @@ const projectsRouter = express.Router();
 
 projectsRouter.get("/", projectControllar.allProjects);
 projectsRouter.get("/:id", projectControllar.singleProject);
-projectsRouter.get("/meta/:href", projectControllar.getProjectsMeta);
+
 projectsRouter.post(
   "/",
   verifyToken,
