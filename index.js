@@ -25,9 +25,16 @@ app.use(
     origin: [
       "http://localhost:3000",
       process.env.FRONTEND_URL,
-      "https://nebs-it-uk-client.vercel.app","https://nebs-it.vercel.app","https://nebs-it-md-rakibul-islams-projects-c9411e14.vercel.app",
+      "https://nebs-it-uk-client.vercel.app",
+      "https://nebs-it.vercel.app",
+      "https://nebs-it-md-rakibul-islams-projects-c9411e14.vercel.app",
       "https://nebs-it-uk-client-gicg4vqpo-nebs-its-projects.vercel.app",
-      "https://nebs-it-uk-client-git-main-nebs-its-projects.vercel.app","https://nebsit.vercel.app","https://nebs-it.com","https://www.nebs-it.com","https://www.nebs-it.co.uk","https://nebs-it.co.uk"
+      "https://nebs-it-uk-client-git-main-nebs-its-projects.vercel.app",
+      "https://nebsit.vercel.app",
+      "https://nebs-it.com",
+      "https://www.nebs-it.com",
+      "https://www.nebs-it.co.uk",
+      "https://nebs-it.co.uk",
     ],
     credentials: true,
     optionSuccessStatus: 200,
@@ -39,9 +46,10 @@ app.use(cookieParser());
 app.use(express.json());
 app.use(helmet());
 app.use(morgan("combined"));
+app.set("trust proxy", true);
 const limiter = rateLimit({
-  windowMs: 15 * 60 * 1000,
-  max: 100,
+  windowMs: 10 * 60 * 1000,
+  max: 500,
 });
 app.use(limiter);
 // custom middleware
