@@ -76,6 +76,8 @@ const jobsControllar = {
   },
   jobApply: async (req, res, next) => {
     const { name, email, mobile, location, position, message } = req.body;
+    console.log(position)
+
     const cvFile = req.file;
 
     if (!cvFile) {
@@ -97,6 +99,7 @@ const jobsControllar = {
         text,
         cvFile
       );
+
       return res.status(200).send({
         message: "Job application sent successfully",
         success: true,

@@ -46,7 +46,7 @@ app.use(cookieParser());
 app.use(express.json());
 app.use(helmet());
 app.use(morgan("combined"));
-app.set("trust proxy", true);
+app.set("trust proxy", 1);
 const limiter = rateLimit({
   windowMs: 10 * 60 * 1000,
   max: 500,
