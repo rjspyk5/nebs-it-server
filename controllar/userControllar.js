@@ -16,12 +16,14 @@ const userControllar = {
         return res
           .status(400)
           .send({ message: "Password didn't match", success: false });
-      const token = genarateToken({ email: credentials?.email,role:result.role });
+      const token = genarateToken({
+        email: credentials?.email,
+        role: result.role,
+      });
       res
         .status(200)
         .send({ success: true, message: "Successfully Login", token });
     } catch (error) {
-     
       next(error);
     }
   },
@@ -38,28 +40,51 @@ const userControllar = {
       next(error);
     }
   },
+  // changePassword: async (req, res, next) => {
+  //   const { oldPassword, newPassword } = req.body;
+  //   const id = req.params.id;
+  //   try {
+  //     const user = await User.findById(id);
+  //     const isMatched = user.isPasswordMatched(oldPassword);
+  //     if (!isMatched)
+  //       return res
+  //         .status(400)
+  //         .send({ success: false, message: "Password not matched" });
+
+  //     const result = await User.updateOne(
+  //       { _id: id },
+  //       { password: newPassword }
+  //     );
+  //     if (result?.modifiedCount) {
+  //       return res.send({ message: "Password change sccessfully" });
+  //     } else {
+  //       return res.send({
+  //         message: "Your given data and previous data is same",
+  //       });
+  //     }
+  //   } catch (error) {
+  //     next(error);
+  //   }
+  // },
   changePassword: async (req, res, next) => {
     const { oldPassword, newPassword } = req.body;
     const id = req.params.id;
 
     try {
       const user = await User.findById(id);
-      const isMatched = user.isPasswordMatched(oldPassword);
+
+      const isMatched = await user.isPasswordMatched(oldPassword);
+ 
       if (!isMatched)
         return res
           .status(400)
           .send({ success: false, message: "Password not matched" });
-      const result = await User.updateOne(
-        { _id: id },
-        { password: newPassword }
-      );
-      if (result?.modifiedCount) {
-        return res.send({ message: "Password change sccessfully" });
-      } else {
-        return res.send({
-          message: "Your given data and previous data is same",
-        });
-      }
+
+      user.password = newPassword;
+
+      await user.save();
+
+      return res.send({ message: "Password changed successfully" });
     } catch (error) {
       next(error);
     }
@@ -112,7 +137,6 @@ const userControllar = {
       next(error);
     }
   },
-
 };
 
 module.exports = userControllar;
