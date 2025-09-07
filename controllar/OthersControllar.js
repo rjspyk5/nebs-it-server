@@ -37,7 +37,7 @@ const othersControllar = {
   home: async (req, res, next) => {
     try {
       const totalProjects = await Projects.countDocuments();
-      const latestProjects = await Projects.find().limit(4);
+      const latestProjects = await Projects.find().limit(8);
       const latestBlogs = await Blogs.find().limit(4);
       res.status(200).send({
         success: true,
