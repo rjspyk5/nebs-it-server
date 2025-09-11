@@ -1,5 +1,3 @@
-const { verifyAdmin } = require("../middleware/verifyAdminstration");
-const verifyToken = require("../middleware/verifyToken");
 const Jobs = require("../model/jobsModel");
 const database = require("../services/database");
 const { sendemail } = require("../services/sendEmail");
@@ -22,7 +20,10 @@ const jobsControllar = {
     const meta = req.query.meta;
 
     try {
-      const result = await Jobs.findOne({ _id: id },meta ? { metaTitle: 1, metaDescription: 1 } : {});
+      const result = await Jobs.findOne(
+        { _id: id },
+        meta ? { metaTitle: 1, metaDescription: 1 } : {}
+      );
 
       res.status(200).send({
         success: true,
@@ -76,7 +77,7 @@ const jobsControllar = {
   },
   jobApply: async (req, res, next) => {
     const { name, email, mobile, location, position, message } = req.body;
-    console.log(position)
+    console.log(position);
 
     const cvFile = req.file;
 

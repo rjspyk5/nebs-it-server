@@ -3,8 +3,8 @@ const nodemailer = require("nodemailer");
 // Create transporter with proper configuration
 const transporter = nodemailer.createTransport({
   host: "smtp.gmail.com",
-  port: 587,
-  secure: false, // Remove duplicate secure property, use false for port 587
+  port: 465,
+  secure: true, // Remove duplicate secure property, use false for port 587
   auth: {
     user: process.env.NODEMAILER_USER,
     pass: process.env.NODEMAILER_PASS,
@@ -28,7 +28,7 @@ const sendemail = async (to, subjectTopic, text, cvFile = null) => {
     console.log('SMTP server connection verified');
 
     const mailOptions = {
-      from: '"Nebs It UK" <nebsdev1@gmail.com>',
+      from: '"Nebs It" <nebsdev1@gmail.com>',
       to: to,
       subject: subjectTopic,
       text: text,
