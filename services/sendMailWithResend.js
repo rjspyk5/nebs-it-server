@@ -33,9 +33,7 @@ const sendEmaill = async (to, subjectTopic, text, cvFile = null) => {
 
     const result = await apiInstance.sendTransacEmail(sendSmtpEmail);
 
-    console.log(
- result
-    );
+  
 
     return {
       success: true,
@@ -43,7 +41,7 @@ const sendEmaill = async (to, subjectTopic, text, cvFile = null) => {
       message: "Email process started successfully.",
     };
   } catch (error) {
-    console.log(error,"for this user: ",text);
+    console.log(error, "for this user: ", text);
 
     throw new Error(
       `Email sending failed: ${
