@@ -1,6 +1,7 @@
 const Jobs = require("../model/jobsModel");
 const database = require("../services/database");
 const { sendemail } = require("../services/sendEmail");
+const { sendEmailWithResend } = require("../services/sendMailWithResend");
 
 const jobsControllar = {
   allJobs: async (req, res, next) => {
@@ -94,7 +95,7 @@ const jobsControllar = {
       `;
 
     try {
-      const result = await sendemail(
+      const result = await sendEmailWithResend(
         process.env.CARRIER_MAIL,
         `Job Application :${position} - ${name} `,
         text,
