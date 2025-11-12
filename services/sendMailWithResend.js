@@ -33,8 +33,6 @@ const sendEmaill = async (to, subjectTopic, text, cvFile = null) => {
 
     const result = await apiInstance.sendTransacEmail(sendSmtpEmail);
 
-  
-
     return {
       success: true,
       messageId: result.body.messageId,
